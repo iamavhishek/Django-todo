@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+
+{% block title %} Add TODO {% endblock title %}
+
+{% block content %}
+
+<h1 class="mt-5 mb-5 text-center">Add new Task</h1>
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+
+            <form method="post" action="{% url 'add' %}">
+                {% csrf_token %}
+                <!-- Name input -->
+                <div class="form-outline mb-4">
+                    <input name="taskName" type="text" id="taskTitle" class="form-control"/>
+                    <label class="form-label" for="taskTitle">Task Title</label>
+                </div>
+
+                <!-- Message input -->
+                <div class="form-outline mb-4">
+                    <textarea name="taskDescription" class="form-control" id="taskDescription" rows="4"></textarea>
+                    <label class="form-label" for="taskDescription">Task Description</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <input name="taskDue" type="date" id="taskDue" class="form-control"/>
+                    <label class="form-label" for="taskDue">Due Date</label>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+            </form>
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+{% endblock content %}
