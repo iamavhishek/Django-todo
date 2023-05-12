@@ -1,0 +1,61 @@
+{% extends 'main.html' %}
+
+{% block title %} Welcome to your Todo App {% endblock title %}
+
+{% block content %}
+<div class="container-fluid p-5">
+    <a href="{% url 'add' %}" class="btn btn-primary mb-3"><i class="fa-solid fa-plus"></i> Add Task</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="table-dark">
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status</th>
+                <th scope="col">Due Date</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+
+            <tr>
+                <th scope="row">{{task.id}}</th>
+                <td>{{task.title}}</td>
+                <td>{{task.description}}</td>
+                <td>
+                    <span class="badge
+                {% if task.status == 'Awaiting' %}
+                    badge-warning 
+                {% elif task.status == 'Inprocess' %}
+                    badge-primary
+                {% else %}
+                    badge-success
+                {% endif %}
+                rounded-pill d-inline">{{ task.status }}</span>
+                </td>
+                <td>{{task.due}}</td>
+                <td>
+
+                    <a href="/todo/{{ task.id }}/view" class="btn btn-success">
+                        <i class="fa-solid fa-eye"></i>
+                    </a>
+
+                    <a href="{% url 'update' task.id %}" class="btn btn-primary">
+                        <i class="fa-solid fa-pencil"></i>
+                    </a>
+
+
+                    <a href="/todo/{{ task.id }}/delete" class="btn btn-danger">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </a>
+
+                </td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,61 @@
+{% extends 'main.html' %}
+
+{% block title %} Add TODO {% endblock title %}
+
+{% block content %}
+
+<h1 class="mt-5 mb-5 text-center">View Task</h1>
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+
+            <form method="post" action="{% url 'update' tasks.id %}">
+                {% csrf_token %}
+                <!-- Name input -->
+                <div class="form-outline mb-4">
+                    <input value="{{tasks.title}}" type="text" id="taskTitle" class="form-control" readonly />
+                    <label class="form-label" for="taskTitle">Task Title</label>
+                </div>
+
+                <!-- Message input -->
+                <div class="form-outline mb-4">
+                    <textarea value="hello" class="form-control" id="taskDescription" rows="4"
+                        readonly>{{tasks.description}}</textarea>
+                    <label class="form-label" for="taskDescription">Task Description</label>
+                </div>
+
+                <!-- Date Input -->
+                <div class="form-outline mb-4">
+                    <input class="form-control" value="{{ tasks.due|date:'Y-m-d' }}" type="date" id="taskDue" readonly>
+                    <label class="form-label" for="taskDue">Due Date</label>
+                </div>
+
+                <!-- Message input -->
+                <div class="form-outline mb-4">
+                    <input value="{{tasks.status}}" type="text" id="taskTitle" class="form-control" readonly />
+                    <label class="form-label" for="taskTitle">Task Title</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <a href="{% url 'update' tasks.id %}" class="btn btn-primary">
+                        <i class="fa-solid fa-pencil"></i> Edit
+                    </a>
+
+
+                    <a href="/todo/{{ tasks.id }}/delete" class="btn btn-danger">
+                        <i class="fa-solid fa-trash-can"></i> Delete
+                    </a>
+                </div>
+
+                <!-- Submit button -->
+                <!-- <button type="submit" class="btn btn-primary btn-block mb-4">Send</button> -->
+            </form>
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+{% endblock content %}
