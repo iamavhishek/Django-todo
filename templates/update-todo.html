@@ -32,18 +32,21 @@
                         id="taskDue">
                     <label class="form-label" for="taskDue">Due Date</label>
                 </div>
-  
+
                 <div class="form-outline mb-4">
                     <label class="form-label" for="taskStatus">Task Status</label>
                     <select class="form-select" name="taskStatus" id="taskStatus">
-                        <option {% if tasks.status == 'Awaiting' %}selected{% endif %} value="Awaiting">Awaiting</option>
-                        <option {% if tasks.status == 'Process' %}selected{% endif %} value="Process">Process</option>
-                        <option {% if tasks.status == 'Completed' %}selected{% endif %} value="Completed">Completed</option>
+                        <option {% if tasks.status == 'Awaiting' %} selected {% endif %} value="Awaiting">Awaiting
+                        </option>
+                        <option {% if tasks.status == 'Process' %} selected {% endif %} value="Process">Process</option>
+                        <option {% if tasks.status == 'Completed' %} selected {% endif %} value="Completed">Completed
+                        </option>
                     </select>
                 </div>
 
                 <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+                <input type="submit" name="ButtonPressed" value="Update"
+                    class="btn btn-primary btn-block mb-4">
             </form>
 
         </div>
